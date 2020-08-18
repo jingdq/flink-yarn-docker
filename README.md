@@ -29,6 +29,16 @@ docker-compose -f docker-compose.yml stop   #关闭容器服务集群
 ```
 docker exec -it flink-hadoop-nn1-rm1 gosu flink /opt/flink/bin/yarn-session.sh -n 3 -jm 1024 -tm 1024 -d -st
 ```
+
+
+
+Job per cluster 
+
+```
+docker exec -it flink-hadoop-nn1-rm1 gosu flink /opt/flink/bin/flink run -m yarn-cluster -c org.apache.flink.examples.java.wordcount.WordCount ./examples/batch/WordCount.jar  -input hdfs:///input -output hdfs:///output
+
+```
+
 flink相关启动参数可以自行调整。
 
 编写docker-compoose.yml文件，内容参考如下：
